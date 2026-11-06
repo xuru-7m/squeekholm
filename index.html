@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Squeekholm — 200 floors, verified onchain</title>
+  <meta name="description" content="A holder-only pixel roguelike for Squeek NFT holders: 200 floors, 23 monsters, 6 bosses and 40+ items. Every floor you save is replayed and verified by a Sepolia contract, and the real hamster sets each run's mood." />
+  <link rel="icon" href="./favicon.ico" sizes="any" />
+  <link rel="icon" href="./favicon.png" type="image/png" />
+  <meta property="og:title" content="Squeekholm" />
+  <meta property="og:description" content="200 floors. Every move replayed and verified onchain." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://squeekholm.site/" />
+  <meta property="og:image" content="https://squeekholm.site/og.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://squeekholm.site/og.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <header class="bar">
+    <div class="logo"><img src="./logo.png" alt="Squeekholm" />SQUEEK<span>HOLM</span></div>
+    <div class="pill" id="wheel">wheel: …</div>
+    <div class="right">
+      <button id="mute" class="px-btn tiny">♪</button>
+      <button id="connect" class="px-btn">CONNECT</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="stage">
+      <div class="screen-wrap">
+        <canvas id="screen" tabindex="0" aria-label="Squeekholm game screen"></canvas>
+        <div id="overlay" class="overlay hidden"></div>
+      </div>
+      <div class="controls">
+        <div class="pad">
+          <button class="px-btn" data-dir="0" aria-label="Up">▲</button>
+          <button class="px-btn" data-dir="3" aria-label="Left">◀</button>
+          <button class="px-btn" data-act="4" aria-label="Wait">·</button>
+          <button class="px-btn" data-dir="1" aria-label="Right">▶</button>
+          <button class="px-btn" data-dir="2" aria-label="Down">▼</button>
+          <button class="px-btn aim" id="aimBtn" aria-label="Aim the sling">🎯</button>
+        </div>
+        <div class="keys">
+          <div class="row left">
+            <button id="practiceBtn" class="px-btn">PRACTICE RUN</button>
+            <button id="rankedBtn" class="px-btn gold">RANKED RUN</button>
+            <button id="saveNow" class="px-btn" disabled>NOTHING TO SAVE</button>
+            <button class="px-btn tiny" data-act="5">FLEE</button>
+          </div>
+          <p><b>WASD / ARROWS</b> move &amp; melee · <b>SHIFT+DIR</b>, <b>IJKL</b> or <b>F</b>+dir: sling · <b>SPACE</b> wait · <b>C</b> save floors onchain · <b>Q</b> leave the burrow</p>
+        </div>
+      </div>
+    </section>
+
+    <aside class="side">
+      <div class="panel">
+        <h3>DELVER</h3>
+        <div id="delver"></div>
+        <div id="panelStatus" class="small"></div>
+      </div>
+      <div class="panel">
+        <h3 id="seasonTitle">SEASON</h3>
+        <div id="seasonBody"></div>
+      </div>
+      <div class="panel">
+        <h3>TODAY'S DEEPEST</h3>
+        <div id="board" class="board"></div>
+      </div>
+      <div class="panel">
+        <h3>HALL OF DEPTH · ALL TIME</h3>
+        <div id="allTime" class="board"></div>
+      </div>
+      <div class="panel">
+        <h3>BESTIARY &amp; LOOT</h3>
+        <div id="codex"></div>
+      </div>
+      <div class="panel">
+        <h3>HOW IT WORKS</h3>
+        <ul class="small rules">
+          <li><b>200 floors, 8 biomes.</b> Maps grow from 17×13 to 47×35. Every 10th floor is a boss floor whose stairs stay sealed until the boss falls; floor 200 hides the Cat Emperor and the golden wheel.</li>
+          <li><b>Deeper is deadlier and richer.</b> Monsters get tougher and new kinds appear; chests roll better weapons, armor, slings and charms. Kill to gain XP and level up.</li>
+          <li><b>Fight two ways.</b> Bump to melee, sling pebbles at range. Weapons can pierce, cleave, leech or crit. Linger too long on a floor and the burrow caves in.</li>
+          <li><b>The real hamster</b> sets each run's mood from his certified work in SqueekCore's last 6 rounds: 💤 dark &amp; drowsy, 🐾 normal, 🏃 richer, ⚡ deadlier but double seeds.</li>
+          <li><b>Ranked runs</b> draw their burrow onchain (3 per Squeek per day). Save your floors any time with <b>C</b>: the contract replays every move of them and records your depth and score. Runs stay open for 2 days.</li>
+        </ul>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="muted small">Sepolia testnet only. No tokens, no money: just seeds, glory and a real hamster. <span id="gameLink"></span></footer>
+
+  <script type="module" src="./game.js"></script>
+</body>
+</html>
